@@ -35,6 +35,7 @@
           .createUserWithEmailAndPassword(email, password)
           .then(function (userCredential) {
             console.log("User signed up:", userCredential.user);
+            alert("Registration Done " + user.uid)
           })
           .catch(function (error) {
             console.log("Sign up error:", error);
@@ -53,7 +54,7 @@
             console.log("User signed in:", userCredential.user);
             // Add your custom logic after successful sign in
             var user = userCredential.user;
-            alert("Done " + user.uid);
+            alert("Login Successfull " + user.uid);
           })
           .catch(function (error) {
             console.log("Sign in error:", error);
