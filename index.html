@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slide Navbar</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+      // "sign up" implies creating an account, login, and password, while "sign in" implies gaining access to the account by entering the previously created login name and password.
+
+      // Initialize Firebase
+      var firebaseConfig = {
+        apiKey: "AIzaSyCfO56ct2AmWKSMAIfhWYVO5k3OlcMV_co",
+        authDomain: "byteblaster-348ea.firebaseapp.com",
+        databaseURL: "https://byteblaster-348ea-default-rtdb.firebaseio.com",
+        projectId: "byteblaster-348ea",
+        storageBucket: "byteblaster-348ea.appspot.com",
+        messagingSenderId: "4035837239",
+        appId: "1:4035837239:web:b72d642223a795200feeb2",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      function signUp() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then(function (userCredential) {
+            console.log("User signed up:", userCredential.user);
+          })
+          .catch(function (error) {
+            console.log("Sign up error:", error);
+            // Handle sign up errors
+          });
+      }
+
+      function signIn() {
+        var email = document.getElementById("email1").value;
+        var password = document.getElementById("password1").value;
+
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(function (userCredential) {
+            console.log("User signed in:", userCredential.user);
+            // Add your custom logic after successful sign in
+            var user = userCredential.user;
+            alert("Done " + user.uid);
+          })
+          .catch(function (error) {
+            console.log("Sign in error:", error);
+            // Handle sign in errors
+            alert("Error");
+          });
+      }
+
+      function signOut() {
+        firebase
+          .auth()
+          .signOut()
+          .then(function () {
+            console.log("User signed out");
+            // Add your custom logic after successful sign out
+          })
+          .catch(function (error) {
+            console.log("Sign out error:", error);
+            // Handle sign out errors
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="main">
+      <input type="checkbox" id="chk" aria-hidden="true" />
+
+      <div class="signup">
+        <div id="signup-form">
+          <label for="chk" aria-hidden="true">Sign up</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="User name"
+            required=""
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required=""
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required=""
+          />
+          <!-- <input type="submit" id="signUp" name="signup_submit" value="Sign up"> -->
+          <button onclick="signUp()">Sign Up</button>
+        </div>
+      </div>
+
+      <div class="login">
+        <div>
+          <label for="chk" aria-hidden="true">Login</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            id="email1"
+            required=""
+          />
+          <input
+            type="password"
+            name="password"
+            id="password1"
+            placeholder="Password"
+            required=""
+          />
+          <button onclick="signIn()">Login</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
