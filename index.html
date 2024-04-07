@@ -24,23 +24,29 @@
 
       firebase.initializeApp(firebaseConfig);
 
-      function signUp() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
 
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password)
-          .then(function (userCredential) {
-            console.log("User signed up:", userCredential.user);
-            alert("Sign Up Successfull" );
-          })
-          .catch(function (error) {
-            console.log("Sign up error:", error);
-            alert("Error Invalid !!! ");
-            // Handle sign up errors
-          });
-      }
+      function signUp() {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(function (userCredential) {
+        console.log("User signed up:", userCredential.user);
+        alert("Sign Up Successful");
+        // Clear the form fields
+        document.getElementById("username").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+      })
+      .catch(function (error) {
+        console.log("Sign up error:", error);
+        alert("Error: " + error.message);
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+      });
+  }
 
       function signIn() {
         var email = document.getElementById("email1").value;
@@ -54,11 +60,15 @@
             // Add your custom logic after successful sign in
             var user = userCredential.user;
             alert("Login successful!");
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
           })
           .catch(function (error) {
             console.log("Sign in error:", error);
             // Handle sign in errors
             alert("Error - Invalid Email or Password ");
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
           });
       }
 
