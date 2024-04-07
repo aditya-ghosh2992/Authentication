@@ -11,8 +11,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script>
-      // "sign up" implies creating an account, login, and password, while "sign in" implies gaining access to the account by entering the previously created login name and password.
-
       // Initialize Firebase
       var firebaseConfig = {
         apiKey: "AIzaSyCfO56ct2AmWKSMAIfhWYVO5k3OlcMV_co",
@@ -35,10 +33,11 @@
           .createUserWithEmailAndPassword(email, password)
           .then(function (userCredential) {
             console.log("User signed up:", userCredential.user);
-            alert("Registration Done " + user.uid)
+            alert("Sign Up Successfull" );
           })
           .catch(function (error) {
             console.log("Sign up error:", error);
+            alert("Error Invalid !!! ");
             // Handle sign up errors
           });
       }
@@ -54,12 +53,12 @@
             console.log("User signed in:", userCredential.user);
             // Add your custom logic after successful sign in
             var user = userCredential.user;
-            alert("Login Successfull " + user.uid);
+            alert("Login successful!");
           })
           .catch(function (error) {
             console.log("Sign in error:", error);
             // Handle sign in errors
-            alert("Error");
+            alert("Error - Invalid Email or Password ");
           });
       }
 
