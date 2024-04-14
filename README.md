@@ -1,1 +1,1 @@
-# Auth
+# User - Authentication (E-mail only)
